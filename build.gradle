@@ -17,6 +17,13 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        maven {
+            url = "https://modmaven.dev/"
+            content {
+                includeGroup("com.jozufozu.flywheel")
+                includeGroup("com.simibubi.create")
+            }
+        }
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
         maven { // Flywheel
             url = "https://maven.tterrag.com/"
