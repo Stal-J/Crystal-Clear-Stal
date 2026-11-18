@@ -18,12 +18,7 @@ subprojects {
         mavenLocal()
         mavenCentral()
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
-        maven { // Flywheel
-            url = "https://maven.tterrag.com/"
-            content {
-                includeGroup("com.jozufozu.flywheel")
-            }
-        }
+        maven { url = "https://maven.createmod.net" }
     }
 
     dependencies {

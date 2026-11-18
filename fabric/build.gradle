@@ -54,7 +54,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
-    modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
+    modImplementation("com.simibubi.create:create-fabric:${create_fabric_version}")
 }
 
 processResources {
