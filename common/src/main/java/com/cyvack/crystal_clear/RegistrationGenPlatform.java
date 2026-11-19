@@ -4,10 +4,12 @@ import com.cyvack.crystal_clear.common.content.blocks.GlassEncasedCogwheel;
 import com.cyvack.crystal_clear.common.content.blocks.GlassEncasedShaft;
 import com.cyvack.crystal_clear.common.generation.RegistrateGenHelper;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.decoration.encasing.EncasableBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.tterrag.registrate.builders.BlockBuilder;
+import com.tterrag.registrate.builders.BlockEntityBuilder;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -19,6 +21,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 public class RegistrationGenPlatform {
+
+    @ExpectPlatform
+    public static <T extends KineticBlockEntity, P> NonNullUnaryOperator<BlockEntityBuilder<T, P>> shaftVisual() {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    public static <T extends KineticBlockEntity, P> NonNullUnaryOperator<BlockEntityBuilder<T, P>> cogVisual(boolean large) {
+        throw new AssertionError();
+    }
 
     @NotNull
     public static <B extends Block & EncasedBlock, P, E extends Block & EncasableBlock> NonNullUnaryOperator<BlockBuilder<B, P>> baseAdd(Supplier<E> sup) {

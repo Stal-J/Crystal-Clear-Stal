@@ -4,10 +4,15 @@ import com.cyvack.crystal_clear.RegistrationGenPlatform;
 import com.cyvack.crystal_clear.common.content.blocks.GlassEncasedCogwheel;
 import com.cyvack.crystal_clear.common.content.blocks.GlassEncasedShaft;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
+import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogVisual;
+import com.simibubi.create.foundation.data.CreateBlockEntityBuilder;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.encasing.EncasableBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.tterrag.registrate.builders.BlockBuilder;
+import com.tterrag.registrate.builders.BlockEntityBuilder;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +25,15 @@ import static com.cyvack.crystal_clear.common.generation.RegistrateGenHelper.*;
 import static com.simibubi.create.foundation.data.BlockStateGen.axisBlock;
 
 public class RegistrationGenPlatformImpl {
+
+    public static <T extends KineticBlockEntity, P> NonNullUnaryOperator<BlockEntityBuilder<T, P>> shaftVisual() {
+        return b -> ((CreateBlockEntityBuilder<T, P>) b).visual(() -> SingleAxisRotatingVisual::shaft, false);
+    }
+
+    public static <T extends KineticBlockEntity, P> NonNullUnaryOperator<BlockEntityBuilder<T, P>> cogVisual(boolean large) {
+        return b -> large ? ((CreateBlockEntityBuilder<T, P>) b).visual(() -> EncasedCogVisual::large, false)
+                : ((CreateBlockEntityBuilder<T, P>) b).visual(() -> EncasedCogVisual::small, false);
+    }
 
     public static <B extends Block & EncasedBlock, P, E extends Block & EncasableBlock> NonNullUnaryOperator<BlockBuilder<B, P>> addVariant(@Nullable ResourceLocation loc, NonNullSupplier<E> sup) {
         return RegistrationGenPlatform.baseAdd(sup);

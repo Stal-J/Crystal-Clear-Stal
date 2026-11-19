@@ -1,12 +1,11 @@
 package com.cyvack.crystal_clear.common.registry;
 
+import com.cyvack.crystal_clear.RegistrationGenPlatform;
 import com.cyvack.crystal_clear.common.CCCRegistrate;
 import com.cyvack.crystal_clear.common.CrystalClear;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogVisual;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
@@ -15,7 +14,7 @@ public class CCCBlockEntities {
 
     public static final BlockEntityEntry<KineticBlockEntity> GLASS_ENCASED_SHAFT = REGISTRATE
             .blockEntity("glass_encased_shaft", KineticBlockEntity::new)
-            .visual(() -> SingleAxisRotatingVisual::shaft, false)
+            .transform(RegistrationGenPlatform.shaftVisual())
             .validBlocks(CCCBlocks.GLASS_ENCASED_SHAFTS.toArray())
             .validBlocks(CCCBlocks.CLEAR_GLASS_ENCASED_SHAFTS.toArray())
             .renderer(()-> ShaftRenderer::new)
@@ -24,7 +23,7 @@ public class CCCBlockEntities {
     //Glass Encased Small Cogs
     public static final BlockEntityEntry<SimpleKineticBlockEntity> GLASS_ENCASED_COG = REGISTRATE
             .blockEntity("glass_encased_cog", SimpleKineticBlockEntity::new)
-            .visual(()-> EncasedCogVisual::small, false)
+            .transform(RegistrationGenPlatform.cogVisual(false))
             .validBlocks(CCCBlocks.SMALL_GLASS_ENCASED_COGWHEELS.toArray())
             .validBlocks(CCCBlocks.SMALL_CLEAR_GLASS_ENCASED_COGWHEELS.toArray())
             .renderer(()-> EncasedCogRenderer::small)
@@ -33,7 +32,7 @@ public class CCCBlockEntities {
     //Glass Encased Large Cogs
     public static final BlockEntityEntry<SimpleKineticBlockEntity> GLASS_ENCASED_LARGE_COG = REGISTRATE
             .blockEntity("glass_encased_large_cog", SimpleKineticBlockEntity::new)
-            .visual(()-> EncasedCogVisual::large, false)
+            .transform(RegistrationGenPlatform.cogVisual(true))
             .validBlocks(CCCBlocks.LARGE_GLASS_ENCASED_COGWHEELS.toArray())
             .validBlocks(CCCBlocks.LARGE_CLEAR_GLASS_ENCASED_COGWHEELS.toArray())
             .renderer(()-> EncasedCogRenderer::large)
